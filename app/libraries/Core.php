@@ -14,7 +14,7 @@ class Core
   {
 
     $url = $this->getUrl();
-    print_r($url);
+    
 
     if (isset($url[0])) {
     
@@ -38,8 +38,7 @@ class Core
 
             // Get params
 
-            $this->params = $url ? array_values($url) : [];
-
+            $this->params = $url ? array_values($url) : [];            
             // Call a callback with array of params
             call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
           } else {

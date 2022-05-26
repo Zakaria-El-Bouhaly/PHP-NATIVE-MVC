@@ -43,4 +43,15 @@ class project
         $this->db->execute($prs);
         return $this->db->resultSet();
     }
+
+    public function count_up($prs)
+    {
+        $sql = 'update projects set download_count=download_count+1 where id=:pid';
+        $this->db->query($sql);
+        $this->db->execute($prs);
+
+        $this->db->query("select download_count from projects where id=:pid");
+        $this->db->execute($prs);
+        return $this->db->single();
+    }
 }

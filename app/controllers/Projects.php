@@ -46,7 +46,7 @@ class Projects extends Controller
                             $file = $directory . "temp/" . $_FILES['file']['name'][$i];
                             // Upload file
                             move_uploaded_file($_FILES['file']['tmp_name'][$i], $file);
-                            $zip->addFile($file);
+                            $zip->addFile($file, $_FILES['file']['name'][$i]);
                         }
                         $zip->close();
                         array_map('unlink', array_filter((array) glob($directory . "temp/*")));
@@ -87,7 +87,7 @@ class Projects extends Controller
         }
     }
 
-    public function profile($student=null)
+    public function profile($student = null)
     {
         $prs = ['student_id' => $student];
 
@@ -107,5 +107,19 @@ class Projects extends Controller
                 echo json_encode($results);
             }
         }
+    }
+    public function download($directory, $file)
+    {
+        $fileurl = URLROOT . "/app/upload/" . $directory . "/" . $file;
+        // push to download the zip
+        header('Content-type: application/zip');
+        header('Content-Disposition: attachment; filename="' . $file . '"');
+        readfile($fileurl);
+    }
+
+    public function count_up()
+    {
+        $result = $this->projectModel->count_up(["pid" => trim($_GET["pid"])]);
+        echo $result["download_count"];
     }
 }

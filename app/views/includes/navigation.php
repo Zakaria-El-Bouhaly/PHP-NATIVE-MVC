@@ -17,7 +17,7 @@
             <input type="submit" name="submit" value="search">
             <div id="results"></div>
         </form>
-        <a class="profile" href=<?php echo URLROOT . "/projects/profile/" . $_SESSION["session_id"]  ?>>Profile </a>
+        <a class="profile" href=<?php echo URLROOT . "/projects/profile/" . $_SESSION["session_id"]  ?>> <?php echo $_SESSION["fname"] . "\t" . $_SESSION["lname"] ?> </a>
     <?php else : ?>
         <a href="<?php echo URLROOT; ?>/users/login">Login</a>
         <a href="<?php echo URLROOT; ?>/users/register">Register</a>
@@ -38,10 +38,14 @@
             },
             success: function(data) {
                 $("#results").html("");
+
                 if (data) {
+                    console.log(data);
                     const arraydata = JSON.parse(data);
+
                     for (var i = 0; i < arraydata.length; i++) {
-                        var link = "<a href='#'>" + arraydata[i]["Title"].substring(0, 10) + " | By :" + arraydata[i]["fname"] + "  " + arraydata[i]["lname"] + " | " + arraydata[i]["added_at"] + "</a>";                     
+                        var link = "<a href='#'>" + arraydata[i]["Title"].substring(0, 10) + " | By :" + arraydata[i]["fname"] + "  " + arraydata[i]["lname"] + " | " + arraydata[i]["added_at"] + "</a>";
+
                         $("#results").append(link);
                     }
                     $("#results").css("display,block");

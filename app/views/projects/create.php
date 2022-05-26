@@ -30,6 +30,6 @@ require APPROOT . '/views/includes/navigation.php';
         <label for="">Attachements</label>
         <input type="file" name="file[]" multiple required>
 
-        <input type="submit" value="login" name="submit">
+        <input type="submit" value="Upload" name="submit">
     </form>
 </div>

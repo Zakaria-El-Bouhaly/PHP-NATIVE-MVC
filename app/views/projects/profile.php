@@ -23,8 +23,8 @@ require APPROOT . '/views/includes/navigation.php';
                 <h1><?php echo $row['Title']; ?></h1>
                 <p><?php echo $row['Description']; ?></p>
 
+                <a href="<?php echo URLROOT . "/projects/download/" . $row['directory']; ?>" id="<?php echo $row['id'] ?>" onclick="count_up(this.id)">Download files : <?php echo $row['download_count'] ?></a>
 
-                <a href="<?php echo '../upload/' . $row['directory']; ?>" id="<?php echo $row['id'] ?>" onclick="count_up(this.id)">Downloads : <?php echo $row['download_count'] ?></a>
 
 
 
@@ -32,7 +32,7 @@ require APPROOT . '/views/includes/navigation.php';
                     function count_up(id) {
                         $.ajax({
                             method: "GET",
-                            url: "count_up.php",
+                            url: "../count_up",
                             data: {
                                 pid: id,
                             },
@@ -43,6 +43,8 @@ require APPROOT . '/views/includes/navigation.php';
                         });
                     }
                 </script>
+
+
             </div>
         <?php endforeach ?>
     <?php endif ?>

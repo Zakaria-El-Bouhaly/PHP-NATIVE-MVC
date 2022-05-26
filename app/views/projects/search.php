@@ -21,7 +21,7 @@ require APPROOT . '/views/includes/navigation.php';
             <a href="<?php echo URLROOT . "/projects/profile/" . trim($row["publisher_id"]) ?>"><?php echo $row['fname'] . "  " . $row['lname']; ?></a>
             <h1><?php echo $row['Title']; ?></h1>
             <p><?php echo $row['Description']; ?></p>
-            <a href="<?php echo "download/" . $row['directory']; ?>">Download files</a>
+            <a href="<?php echo URLROOT . "/projects/download/" . $row['directory']; ?>">Download files : <?php echo $row['download_count'] ?></a>
         </div>
 
     <?php endforeach; ?>
